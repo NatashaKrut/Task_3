@@ -1,6 +1,5 @@
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +10,7 @@ import pages.LoginPage;
 import pages.MainPage;
 import pages.RegistrationPage;
 import service.Browser;
+import service.RestAssuredTests;
 import service.TestDataHandler;
 
 import java.time.Duration;
@@ -21,7 +21,7 @@ import static pages.ForgotPasswordPage.FORGOT_PASSWORD_PAGE_URL;
 import static pages.MainPage.MAIN_PAGE_URL;
 import static pages.RegistrationPage.REGISTRATION_PAGE_URL;
 
-public class LoginTests {
+public class LoginTests extends RestAssuredTests {
 
     private WebDriver driver;
     private MainPage mainPage;
@@ -35,11 +35,6 @@ public class LoginTests {
 
     Faker faker = new Faker(new Locale("ru"));
     static TestDataHandler tdh = new TestDataHandler();
-
-    @BeforeAll
-    static void setUp() {
-        RestAssured.baseURI = "https://qa-stellarburgers.education-services.ru/";
-    }
 
     @BeforeEach
     public void prepareTestData() {

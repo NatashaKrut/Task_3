@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.Objects;
+
 public class MainPage {
 
     private WebDriver driver;
@@ -17,7 +19,7 @@ public class MainPage {
     public By buttonPersonalAccount = By.xpath(".//p[text()='Личный Кабинет']");
     public By burgerConstructor = By.xpath(".//section[contains(@class,'BurgerIngredients')]");
     public By buttonBun = By.xpath(".//div[child::span[text()='Булки']]");
-    public By buttonSouse = By.xpath(".//div[child::span[text()='Соусы']]");
+    public By buttonSauce = By.xpath(".//div[child::span[text()='Соусы']]");
     public By buttonIngredients = By.xpath(".//div[child::span[text()='Начинки']]");
 
     public void clickButtonLogin() {
@@ -32,11 +34,32 @@ public class MainPage {
         driver.findElement(buttonBun).click();
     }
 
-    public void clickButtonSouse() {
-        driver.findElement(buttonSouse).click();
+    public void clickButtonSauce() {
+        driver.findElement(buttonSauce).click();
     }
 
     public void clickButtonIngredients() {
         driver.findElement(buttonIngredients).click();
+    }
+
+    public boolean isBunButtonActive() {
+        return Objects.requireNonNull(driver
+                        .findElement(buttonBun)
+                        .getDomAttribute("class"))
+                .contains("tab_tab_type_current");
+    }
+
+    public boolean isSauceButtonActive() {
+        return Objects.requireNonNull(driver
+                        .findElement(buttonSauce)
+                        .getDomAttribute("class"))
+                .contains("tab_tab_type_current");
+    }
+
+    public boolean isIngredientsButtonActive() {
+        return Objects.requireNonNull(driver
+                        .findElement(buttonIngredients)
+                        .getDomAttribute("class"))
+                .contains("tab_tab_type_current");
     }
 }

@@ -3,12 +3,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.MainPage;
 import service.Browser;
-
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.MainPage.MAIN_PAGE_URL;
@@ -46,16 +45,13 @@ public class ConstructorTests {
     @Step("Нажимаю на кнопку «Булки»")
     public void clickButtonBun() throws InterruptedException {
         driver.get(MAIN_PAGE_URL);
-        mainPage.clickButtonSouse();
+        mainPage.clickButtonSauce();
         mainPage.clickButtonBun();
     }
 
     @Step("Проверяю, что выполнен успешный переход к разделу «Булки»")
     public void verifyNavigationToBun() {
-        assertTrue(Objects.requireNonNull(driver
-                        .findElement(mainPage.buttonBun)
-                        .getDomAttribute("class"))
-                .contains("tab_tab_type_current"));
+        assertTrue(mainPage.isBunButtonActive());
     }
 
     @Test
@@ -68,15 +64,12 @@ public class ConstructorTests {
     @Step("Нажимаю на кнопку «Соусы»")
     public void clickButtonSouse() {
         driver.get(MAIN_PAGE_URL);
-        mainPage.clickButtonSouse();
+        mainPage.clickButtonSauce();
     }
 
     @Step("Проверяю, что выполнен успешный переход к разделу «Соусы»")
     public void verifyNavigationToSouse() {
-        assertTrue(Objects.requireNonNull(driver
-                        .findElement(mainPage.buttonSouse)
-                        .getDomAttribute("class"))
-                .contains("tab_tab_type_current"));
+        assertTrue(mainPage.isSauceButtonActive());
     }
 
     @Test
@@ -94,9 +87,6 @@ public class ConstructorTests {
 
     @Step("Проверяю, что выполнен успешный переход к разделу «Начинки»")
     public void verifyNavigationToIngredients() {
-        assertTrue(Objects.requireNonNull(driver
-                        .findElement(mainPage.buttonIngredients)
-                        .getDomAttribute("class"))
-                .contains("tab_tab_type_current"));
+        assertTrue(mainPage.isIngredientsButtonActive());
     }
 }
